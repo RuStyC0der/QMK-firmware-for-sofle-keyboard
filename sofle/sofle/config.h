@@ -7,9 +7,9 @@
 
 // wiring of each half
 #define MATRIX_ROW_PINS {  5,  6,  7,  8,  9 }
-#define MATRIX_COL_PINS { NO_PIN, 27, 26, 22, 20, 23, 21 }
+#define MATRIX_COL_PINS { 27, 26, 22, 20, 23, 21, NO_PIN }
 #define MATRIX_ROW_PINS_RIGHT {  5,  6,  7,  8,  9 }
-#define MATRIX_COL_PINS_RIGHT { 28, 27, 26, 22, 20, 23, 21 }
+#define MATRIX_COL_PINS_RIGHT { 27, 26, 22, 20, 23, 21, 28 }
 #define DIODE_DIRECTION COL2ROW
 
 #define TAPPING_TERM 100
