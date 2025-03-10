@@ -15,13 +15,15 @@
 #define TAPPING_TERM 100
 #define DEBOUNCE 5
 
-/* encoder support */
-#define ENCODERS_A_PINS { GP28 }
-#define ENCODERS_B_PINS { GP29 }
-#define ENCODERS_A_PINS_RIGHT { }
-#define ENCODERS_B_PINS_RIGHT { }
-#define ENCODER_RESOLUTION 4
-#define NUM_ENCODERS 1
+/* 
+encoder support was moved to info.json since it seems to be deprecated way to define encoders
+*/
+// #define ENCODERS_A_PINS { GP28 }
+// #define ENCODERS_B_PINS { GP29 }
+// #define ENCODERS_A_PINS_RIGHT { GP29 }
+// #define ENCODERS_B_PINS_RIGHT { GP28 }
+// #define ENCODER_RESOLUTION 4
+// #define NUM_ENCODERS 2
 
 #define TAP_CODE_DELAY 10
 
