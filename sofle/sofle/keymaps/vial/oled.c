@@ -109,7 +109,7 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
         current_frame = (current_frame + 1) % 2;
 
         /* current status */
-        if (led_usb_state.caps_lock) {
+        if (led_usb_state.caps_lock || is_caps_word_on()) {
             oled_write_raw_P(bark[current_frame], ANIM_SIZE);
 
         } else if (isBarking) {
