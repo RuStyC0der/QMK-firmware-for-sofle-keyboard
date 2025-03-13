@@ -119,7 +119,7 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
             oled_write_raw_P(sneak[abs(1 - current_frame)], ANIM_SIZE);
 
         } else if (current_wpm <= MIN_WALK_SPEED) {
-            oled_write_raw_P(sit[abs(1 - current_frame)], ANIM_SIZE);
+            oled_write_raw_P(sit[0], ANIM_SIZE);
 
         } else if (current_wpm <= MIN_RUN_SPEED) {
             oled_write_raw_P(walk[abs(1 - current_frame)], ANIM_SIZE);
