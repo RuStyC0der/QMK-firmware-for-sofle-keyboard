@@ -15,6 +15,8 @@
 #define TAPPING_TERM 100
 #define DEBOUNCE 5
 
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+
 /* 
 encoder support was moved to info.json since it seems to be deprecated way to define encoders
 */
