@@ -3,13 +3,11 @@
 /* key matrix size */
 // Rows are doubled-up
 #define MATRIX_ROWS 10
-#define MATRIX_COLS 7
+#define MATRIX_COLS 6
 
 // wiring of each half
 #define MATRIX_ROW_PINS {  5,  6,  7,  8,  9 }
-#define MATRIX_COL_PINS { 27, 26, 22, 20, 23, 21, NO_PIN }
-#define MATRIX_ROW_PINS_RIGHT {  5,  6,  7,  8,  9 }
-#define MATRIX_COL_PINS_RIGHT { 27, 26, 22, 20, 23, 21, 28 }
+#define MATRIX_COL_PINS { 27, 26, 22, 20, 23, 21 }
 #define DIODE_DIRECTION COL2ROW
 
 #define TAPPING_TERM 100

@@ -20,6 +20,18 @@
 
 #pragma once
 
+#undef MATRIX_COLS
+#define MATRIX_COLS 7
+
+
+// wiring override
+#undef MATRIX_COL_PINS
+#define MATRIX_COL_PINS { 27, 26, 22, 20, 23, 21, NO_PIN }
+
+#undef MATRIX_COL_PINS_RIGHT
+#define MATRIX_COL_PINS_RIGHT { 27, 26, 22, 20, 23, 21, 28 }
+
+
 // Vial Support
 #define VIAL_KEYBOARD_UID { 0x05, 0xCD, 0x9F, 0x8A, 0xF4, 0xDF, 0xDE, 0xB2 }
 #define DYNAMIC_KEYMAP_LAYER_COUNT 8
