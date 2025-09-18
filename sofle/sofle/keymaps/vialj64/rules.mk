@@ -16,5 +16,3 @@ MOUSEKEY_ENABLE = yes
 COMBO_ENABLE = yes
 KEY_OVERRIDE_ENABLE = yes
 SWAP_HANDS_ENABLE = no
-
-SRC += keymaps/vialj/led_config.c
