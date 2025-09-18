@@ -20,17 +20,6 @@
 
 #pragma once
 
-#undef MATRIX_COLS
-#define MATRIX_COLS 7
-
-
-// wiring override
-#undef MATRIX_COL_PINS
-#define MATRIX_COL_PINS { 27, 26, 22, 20, 23, 21, NO_PIN }
-
-#undef MATRIX_COL_PINS_RIGHT
-#define MATRIX_COL_PINS_RIGHT { 27, 26, 22, 20, 23, 21, 28 }
-
 #undef OLED_DISPLAY_128X32
 #define OLED_DISPLAY_64X128
 #define OLED_IC OLED_IC_SH1107
@@ -48,6 +37,3 @@
 // The four corners
 #define VIAL_UNLOCK_COMBO_ROWS { 0, 5, 3, 8 }
 #define VIAL_UNLOCK_COMBO_COLS { 0, 0, 0, 0 }
-
-
-#include "layout.h"
