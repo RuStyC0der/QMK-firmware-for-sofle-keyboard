@@ -20,6 +20,8 @@
 
 #include QMK_KEYBOARD_H
 #include "oled.c"
+#include "process_record.c"
+#include "tap_hold.c"
 
 // Default keymap. This can be changed in Vial. Use oled.c to change beavior that Vial cannot change.
 
@@ -29,11 +31,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [0] = LAYOUT(
-  QK_GESC,    KC_1,         KC_2,         KC_3,         KC_4,         KC_5,             RGUI(KC_RIGHT),  KC_6,         KC_7,         KC_8,         KC_9,         KC_0,              KC_GRV,
-  QK_GESC,    KC_Q,         KC_W,         KC_E,         KC_R,         KC_T,             RGUI(KC_DOWN),   KC_Y,         KC_U,         KC_I,         KC_O,         KC_P,              KC_BSPC,
-  KC_TAB,     LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G,             RGUI(KC_LEFT),   KC_H,         RCTL_T(KC_J), RSFT_T(KC_K), LALT_T(KC_L), RGUI_T(KC_SCLN),   KC_QUOT,
-  KC_LSFT,    KC_Z,         KC_X,         KC_C,         KC_V,         KC_B,   KC_MUTE,  RGUI(KC_PGUP),   KC_N,         KC_M,         KC_COMM,      KC_DOT,       KC_SLSH,           KC_RSFT,
-              KC_LGUI,      KC_LALT,      KC_LCTL,      MO(1),        KC_SPC,           RGUI(KC_UP),     KC_ENT,       MO(2),        KC_RALT,      M0,           KC_RCTL
+  QK_GESC,    KC_1,         KC_2,         KC_3,         KC_4,           KC_5,             RGUI(KC_RIGHT),  KC_6,         KC_7,           KC_8,         KC_9,         KC_0,              KC_GRV,
+  QK_GESC,    KC_Q,         KC_W,         KC_E,         KC_R,           KC_T,             RGUI(KC_DOWN),   KC_Y,         KC_U,           KC_I,         KC_O,         KC_P,              KC_BSPC,
+  KC_TAB,     LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F),   KC_G,             RGUI(KC_LEFT),   KC_H,         RCTL_T(KC_J),   RSFT_T(KC_K), LALT_T(KC_L), RGUI_T(KC_SCLN),   KC_QUOT,
+  KC_LSFT,    KC_Z,         KC_X,         KC_C,         KC_V,           KC_B,   KC_MUTE,  RGUI(KC_PGUP),   KC_N,         KC_M,           KC_COMM,      KC_DOT,       KC_SLSH,           KC_RSFT,
+              KC_LGUI,      KC_LALT,      KC_LCTL,      LT(1, KC_SPC),  KC_SPC,           RGUI(KC_UP),     KC_ENT,       LT(2, KC_ENT),  KC_RALT,      M0,           KC_RCTL
 ),
 /*
  * RAISE
@@ -45,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,   LSFT(KC_MINUS), KC_EQUAL,   LSFT(KC_EQUAL), LSFT(KC_LBRC),     LSFT(KC_RBRC), _______,         XXXXXXX,    KC_LBRC,     KC_RBRC,     KC_SCLN,    LSFT(KC_SCLN),   KC_BSLS,    _______,
              _______,        _______,    _______,        _______,           _______,                        XXXXXXX,    _______,     _______,     _______,    _______,          _______
 ),
-/* 
+/*
  * LOWER
  */
 [2] = LAYOUT(

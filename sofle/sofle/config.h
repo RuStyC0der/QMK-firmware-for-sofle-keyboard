@@ -3,7 +3,8 @@
 #define MATRIX_ROWS 10
 #define MATRIX_COLS 7
 
-#define TAPPING_TERM 100
+#define TAPPING_TERM 200
+
 #define DEBOUNCE 5
 
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
