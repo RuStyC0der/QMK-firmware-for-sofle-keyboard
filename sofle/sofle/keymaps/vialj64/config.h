@@ -37,3 +37,5 @@
 // The four corners
 #define VIAL_UNLOCK_COMBO_ROWS { 0, 5, 3, 8 }
 #define VIAL_UNLOCK_COMBO_COLS { 0, 0, 0, 0 }
+
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
