@@ -22,15 +22,24 @@
 #include "oled.c"
 #include "process_record.c"
 #include "tap_hold.c"
+#include "rgb.c"
+// #include "tap_dance.c"
 
 // Default keymap. This can be changed in Vial. Use oled.c to change beavior that Vial cannot change.
+enum layer_names {
+    _BASE,
+    _RAISE,
+    _LOWER,
+    _GAME
+};
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * QWERTY
  */
 
-[0] = LAYOUT(
+[_BASE] = LAYOUT(
   QK_GESC,    KC_1,         KC_2,         KC_3,         KC_4,           KC_5,             RGUI(KC_RIGHT),  KC_6,         KC_7,           KC_8,         KC_9,         KC_0,              KC_GRV,
   QK_GESC,    KC_Q,         KC_W,         KC_E,         KC_R,           KC_T,             RGUI(KC_DOWN),   KC_Y,         KC_U,           KC_I,         KC_O,         KC_P,              KC_BSPC,
   KC_TAB,     LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F),   KC_G,             RGUI(KC_LEFT),   KC_H,         RCTL_T(KC_J),   RSFT_T(KC_K), LALT_T(KC_L), RGUI_T(KC_SCLN),   KC_QUOT,
@@ -40,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * RAISE
  */
-[1] = LAYOUT(
+[_RAISE] = LAYOUT(
   KC_F1,     KC_F2,          KC_F3,      KC_F4,          KC_F5,             KC_F6,                          XXXXXXX,    KC_F7,       KC_F8,       KC_F9,      KC_F10,          KC_F11,     KC_F12,
   KC_GRV,    KC_1,           KC_2,       KC_3,           KC_4,              KC_5,                           XXXXXXX,    KC_6,        KC_7,        KC_8,       KC_9,            KC_0,       KC_BSPC,
   KC_MINUS,  LSFT(KC_1),     LSFT(KC_2), LSFT(KC_3),     LSFT(KC_4),        LSFT(KC_5),                     XXXXXXX,    LSFT(KC_6),  LSFT(KC_7),  LSFT(KC_8), LSFT(KC_9),      LSFT(KC_0), LSFT(KC_BSLS),
@@ -50,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * LOWER
  */
-[2] = LAYOUT(
+[_LOWER] = LAYOUT(
   _______, _______, _______, _______, _______,  _______,                  KC_MNXT,  _______, _______, _______, _______,  _______, KC_WSCH,
   _______, KC_INS,  KC_PSCR, KC_APP,  XXXXXXX,  XXXXXXX,                  KC_VOLD,  KC_PGUP, KC_HOME, KC_UP,   KC_END,   _______, _______,
   _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL,  KC_CAPS,                  KC_MPRV,  KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,  KC_DEL,  _______,
@@ -61,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * GAME
  */
 
-[3] = LAYOUT(
+[_GAME] = LAYOUT(
   KC_KP_4,  QK_GESC,  KC_1,     KC_2,     KC_3,    KC_4,                  XXXXXXX,   KC_5,    _______,  _______,  _______,  _______,  _______,
   KC_KP_3,  QK_GESC,  KC_Q,     KC_W,     KC_E,    KC_R,                  XXXXXXX,   KC_T,    _______,  _______,  _______,  _______,  _______,
   KC_KP_2,  KC_TAB,   KC_A,     KC_S,     KC_D,    KC_F,                  XXXXXXX,   KC_G,    _______,  _______,  _______,  _______,  _______,
