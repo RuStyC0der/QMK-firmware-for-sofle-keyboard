@@ -23,6 +23,7 @@
 #include "process_record.c"
 #include "tap_hold.c"
 #include "rgb.c"
+#include "suspend.c"
 // #include "tap_dance.c"
 
 // Default keymap. This can be changed in Vial. Use oled.c to change beavior that Vial cannot change.
@@ -75,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_KP_3,  QK_GESC,  KC_Q,     KC_W,     KC_E,    KC_R,                  XXXXXXX,   KC_T,    _______,  _______,  _______,  _______,  _______,
   KC_KP_2,  KC_TAB,   KC_A,     KC_S,     KC_D,    KC_F,                  XXXXXXX,   KC_G,    _______,  _______,  _______,  _______,  _______,
   KC_KP_1,  KC_LSFT,  KC_Z,     KC_X,     KC_C,    KC_V,    _______,      XXXXXXX,   KC_B,    _______,  _______,  _______,  _______,  _______,
-            XXXXXXX,  KC_LALT,  KC_LCTL,  KC_KP_0, KC_SPC,                XXXXXXX,   KC_ENT,  _______,  _______,  _______,  TG(3)
+            XXXXXXX,  KC_LALT,  KC_LCTL,  KC_SPC,  KC_SPC,                XXXXXXX,   KC_ENT,  _______,  _______,  _______,  TG(3)
 )
 };
 
