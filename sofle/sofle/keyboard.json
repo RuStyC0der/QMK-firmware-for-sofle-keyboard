@@ -1,11 +1,11 @@
 {
-    "keyboard_name": "Sofle RBG",
+    "keyboard_name": "Sofle RBG Custom",
     "manufacturer": "PandaKB.COM",
-    "url": "https://github.com/josefadamcik/SofleKeyboard",
-    "maintainer": "PandaKB.COM",
+    "url": "https://github.com/RuStyC0der/QMK-firmware-for-sofle-keyboard.git",
+    "maintainer": "RustyC0der",
     "usb": {
         "vid": "0xFC32",
-        "pid": "0x0287",
+        "pid": "0x0288",
         "device_version": "1.0.0"
     },
     "diode_direction": "COL2ROW",
@@ -41,7 +41,8 @@
                 {"hand": "L", "matrix": [0, 4], "x": 4, "y": 0.125},
                 {"hand": "L", "matrix": [0, 5], "x": 5, "y": 0.25},
                 
-                {"hand": "R", "matrix": [5, 6], "x": 10.5, "y": 0.25},
+                {"hand": "R", "matrix": [5, 6], "x": 10.5, "y": 0.25, "label": "joy-r"},
+                
                 {"hand": "R", "matrix": [5, 5], "x": 10.5, "y": 0.25},
                 {"hand": "R", "matrix": [5, 4], "x": 11.5, "y": 0.125},
                 {"hand": "R", "matrix": [5, 3], "x": 12.5, "y": 0},
@@ -56,7 +57,8 @@
                 {"hand": "L", "matrix": [1, 4], "x": 4, "y": 1.125},
                 {"hand": "L", "matrix": [1, 5], "x": 5, "y": 1.25},
 
-                {"hand": "R", "matrix": [6, 6], "x": 10.5, "y": 1.25},
+                {"hand": "R", "matrix": [6, 6], "x": 10.5, "y": 1.25, "label": "joy-d"},
+
                 {"hand": "R", "matrix": [6, 5], "x": 10.5, "y": 1.25},
                 {"hand": "R", "matrix": [6, 4], "x": 11.5, "y": 1.125},
                 {"hand": "R", "matrix": [6, 3], "x": 12.5, "y": 1},
@@ -71,7 +73,8 @@
                 {"hand": "L", "matrix": [2, 4], "x": 4, "y": 2.125},
                 {"hand": "L", "matrix": [2, 5], "x": 5, "y": 2.25},
 
-                {"hand": "R", "matrix": [7, 6], "x": 10.5, "y": 2.25},
+                {"hand": "R", "matrix": [7, 6], "x": 10.5, "y": 2.25, "label": "joy-l"},
+
                 {"hand": "R", "matrix": [7, 5], "x": 10.5, "y": 2.25},
                 {"hand": "R", "matrix": [7, 4], "x": 11.5, "y": 2.125},
                 {"hand": "R", "matrix": [7, 3], "x": 12.5, "y": 2},
@@ -85,9 +88,10 @@
                 {"hand": "L", "matrix": [3, 3], "x": 3, "y": 3},
                 {"hand": "L", "matrix": [3, 4], "x": 4, "y": 3.125},
                 {"hand": "L", "matrix": [3, 5], "x": 5, "y": 3.25},
-                {"hand": "L", "matrix": [4, 5], "x": 6, "y": 2.75},
+                {"hand": "L", "matrix": [4, 5], "x": 6, "y": 2.75, "encoder": 0},
 
-                {"hand": "R", "matrix": [8, 6], "x": 10.5, "y": 3.25},
+                {"hand": "R", "matrix": [8, 6], "x": 10.5, "y": 3.25, "label": "joy-m"},
+
                 {"hand": "R", "matrix": [8, 5], "x": 10.5, "y": 3.25},
                 {"hand": "R", "matrix": [8, 4], "x": 11.5, "y": 3.125},
                 {"hand": "R", "matrix": [8, 3], "x": 12.5, "y": 3},
@@ -101,7 +105,8 @@
                 {"hand": "L", "matrix": [4, 3], "x": 4.5, "y": 4.25},
                 {"hand": "L", "matrix": [4, 4], "x": 6, "y": 4.25, "h": 1.5},
 
-                {"hand": "R", "matrix": [9, 6], "x": 9.5, "y": 4.25},
+                {"hand": "R", "matrix": [9, 6], "x": 9.5, "y": 4.25, "label": "joy-u"},
+
                 {"hand": "R", "matrix": [9, 4], "x": 9.5, "y": 4.25, "h": 1.5},
                 {"hand": "R", "matrix": [9, 3], "x": 11, "y": 4.25},
                 {"hand": "R", "matrix": [9, 2], "x": 12, "y": 4.15},
