@@ -24,7 +24,7 @@
 #include "tap_hold.c"
 #include "rgb.c"
 #include "suspend.c"
-// #include "tap_dance.c"
+#include "tap_dance.c"
 
 // Default keymap. This can be changed in Vial. Use oled.c to change beavior that Vial cannot change.
 enum layer_names {
@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_BASE] = LAYOUT(
-  QK_GESC,    KC_1,         KC_2,         KC_3,         KC_4,           KC_5,             RGUI(KC_RIGHT),  KC_6,         KC_7,           KC_8,         KC_9,         KC_0,              KC_GRV,
+  QK_GESC,    KC_1,         KC_2,         KC_3,         KC_4,           KC_5,             RGUI(KC_RIGHT),  KC_6,         KC_7,           KC_8,         KC_9,         KC_0,              TD(BSK_PRI_SEARCH),
   QK_GESC,    KC_Q,         KC_W,         KC_E,         KC_R,           KC_T,             RGUI(KC_DOWN),   KC_Y,         KC_U,           KC_I,         KC_O,         KC_P,              KC_BSPC,
   KC_TAB,     LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F),   KC_G,             RGUI(KC_LEFT),   KC_H,         RCTL_T(KC_J),   RSFT_T(KC_K), LALT_T(KC_L), RGUI_T(KC_SCLN),   KC_QUOT,
   KC_LSFT,    KC_Z,         KC_X,         KC_C,         KC_V,           KC_B,   KC_MUTE,  RGUI(KC_PGUP),   KC_N,         KC_M,           KC_COMM,      KC_DOT,       KC_SLSH,           KC_RSFT,
@@ -72,11 +72,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_GAME] = LAYOUT(
-  KC_KP_4,  QK_GESC,  KC_1,     KC_2,     KC_3,    KC_4,                  XXXXXXX,   KC_5,    _______,  _______,  _______,  _______,  _______,
-  KC_KP_3,  QK_GESC,  KC_Q,     KC_W,     KC_E,    KC_R,                  XXXXXXX,   KC_T,    _______,  _______,  _______,  _______,  _______,
+  QK_GESC,  KC_1,     KC_2,     KC_3,     KC_4,    KC_5,                  XXXXXXX,   KC_6,    _______,  _______,  _______,  _______,  _______,
+  KC_KP_3,  KC_KP_4,  KC_Q,     KC_W,     KC_E,    KC_R,                  XXXXXXX,   KC_T,    _______,  _______,  _______,  _______,  _______,
   KC_KP_2,  KC_TAB,   KC_A,     KC_S,     KC_D,    KC_F,                  XXXXXXX,   KC_G,    _______,  _______,  _______,  _______,  _______,
   KC_KP_1,  KC_LSFT,  KC_Z,     KC_X,     KC_C,    KC_V,    _______,      XXXXXXX,   KC_B,    _______,  _______,  _______,  _______,  _______,
-            XXXXXXX,  KC_LALT,  KC_LCTL,  KC_SPC,  KC_SPC,                XXXXXXX,   KC_ENT,  _______,  _______,  _______,  TG(3)
+            KC_KP_0,  KC_LALT,  KC_LCTL,  KC_SPC,  KC_SPC,                XXXXXXX,   KC_ENT,  _______,  _______,  _______,  TG(3)
 )
 };
 
