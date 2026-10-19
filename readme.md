@@ -1,51 +1,96 @@
-# Sofle RGB Custom
+# Sofle RGB Custom firmware
 
-This repo started as fork when I decided to add a little bit of a personal touch to my pandakb's sofle rgb kit.
+Upstream-QMK firmware for a PandaKB Sofle RGB build with two hardware changes:
 
-![keeb](https://github.com/RuStyC0der/QMK-firmware-for-sofle-keyboard/blob/main/assets/pictures/keeb.jpg?raw=true)
+- the stock 32x128 OLEDs are replaced by 64x128 SH1107 displays;
+- the right rotary encoder is replaced by a five-way switch wired as the right
+  matrix's seventh column on `GP28`.
 
-![lightning](https://github.com/RuStyC0der/QMK-firmware-for-sofle-keyboard/blob/main/assets/pictures/ligtning.jpg?raw=true)
+The keyboard uses RP2040 controllers, keeps the left encoder, and drives 72 RGB
+Matrix LEDs split evenly between the halves.
 
-## Keeb got a few upgrades since first build
+![Completed keyboard](assets/pictures/keeb.jpg)
 
-### Case
-It still uses stock tenting case from stock Sofle rgb but i decided to cut top part out of transparent acryl plastic and bottom part out of aluminium for more rich and decent sound. 
+## Firmware layout and support
 
-It also includes custom-molded silicone sound absorber, I used silicone with hardness by shore at 25 points and I satisfied with that, but i used tin-based catalyst and compound comes out oily and always wet, so I recommend using platinum-based catalyst if you want to do this.
+The QMK package mirrors its collision-free build identifier at
+[`keyboards/rustyc0der/sofle`](keyboards/rustyc0der/sofle). Do not install it as
+`sofle/sofle`: that path collides with and inherits settings from QMK's unrelated
+upstream Sofle family.
 
-Some other small upgrades include painter tape mod and pe foam mod.
+Two keymaps are maintained:
 
-![case bottom](https://github.com/RuStyC0der/QMK-firmware-for-sofle-keyboard/blob/main/assets/pictures/case_bottom.jpg?raw=true)
-![case top](https://github.com/RuStyC0der/QMK-firmware-for-sofle-keyboard/blob/main/assets/pictures/case_top.jpg?raw=true)
+- `default` is a conventional QWERTY keymap with ordinary five-way-switch and
+  encoder assignments. It does not enable VIA or personal behavior.
+- `j64` is the personal VIA keymap with four compiled layers, five dynamic
+  layers, home-row mods, Space/Enter layer-taps, tap dance, Caps Word, OLED pet
+  rendering, encoder maps, and red gaming-layer indication.
 
-### Display
-Stock version uses 32x128px display. I decided to change them to 64x128px 1.3 inch display to fit my canvas, [link](https://www.aliexpress.com/item/1005005777499038.html).
+The former `vialj64` target and Vial-only files have been removed. This project
+supports current upstream QMK and VIA; supporting the separate Vial firmware
+fork would require a separately maintained change.
 
-here is some picture with old display to compare with:
-![old display](https://github.com/RuStyC0der/QMK-firmware-for-sofle-keyboard/blob/main/assets/pictures/old_display.jpg?raw=true)
+The audited baseline is QMK `0.34.7` at commit
+`180f394b489c238cb231c2bf8b080262155e03c0`, with that checkout's pinned
+submodules. Build from the QMK checkout after creating the safe vendor-directory
+symlink documented in the [keyboard README](keyboards/rustyc0der/sofle/readme.md):
 
-### Joystick
-Instead of right knob it used 5-direction switch([link](https://www.aliexpress.com/item/1005004108793838.html)) It was wired as additional column to pin 28
-![old display](https://github.com/RuStyC0der/QMK-firmware-for-sofle-keyboard/blob/main/assets/pictures/joystic.jpg?raw=true)
+```sh
+qmk compile -kb rustyc0der/sofle -km default
+qmk compile -kb rustyc0der/sofle -km j64
+```
 
-### Switches
-This keeb uses Keychron smoothie switches at the moment.
+Flash the selected UF2 to both halves. The keyboard README contains the full
+installation and flashing procedure.
 
-### Keycaps
-At the moment I use blank cherry white PBT caps from Aliexpress [link](https://www.aliexpress.com/item/1005009662975948.html)
+## VIA
 
-### Hardware
-It uses stock rpi2040 board from pandakb kit
+Build and flash `j64`, then load [`via/sofle-via.json`](via/sofle-via.json) as a
+draft definition in VIA's Design tab. See the [VIA definition
+guide](via/README.md) for exact steps. VIA is not enabled by `default`.
 
-### Firmware
-Stock firmware was vial as it supports rotary knob and via did no support this feature at the time. Via also provides several advanced features from ui, such as tap dance, and so on. But as it provides this functionality from ui you can not use it from code so you can not use functions like `tap dance` and `tap hold per-key features`. And since now via also supports rotary encoders and do not revent me from using those features I create keymap for via without vial
+## Hardware notes
 
-### Keymap
-Keymap uses home-row keys (CSAG) and also uses layer-tap on layer buttons, right layer button is enter if tapped and left one is space as well as caps word feature. 
-Also I have separate layer for gaming, when switched to it left halve's indicator turns red. 
-On default layer joystic buttons serve to manipulate window position (win+up, win+down and so on)
-Keymap screenshoots from via:
-![l0](https://github.com/RuStyC0der/QMK-firmware-for-sofle-keyboard/blob/main/assets/pictures/l0.png?raw=true)
-![l1](https://github.com/RuStyC0der/QMK-firmware-for-sofle-keyboard/blob/main/assets/pictures/l1.png?raw=true)
-![l2](https://github.com/RuStyC0der/QMK-firmware-for-sofle-keyboard/blob/main/assets/pictures/l2.png?raw=true)
-![l3](https://github.com/RuStyC0der/QMK-firmware-for-sofle-keyboard/blob/main/assets/pictures/l3.png?raw=true)
+### Case and dampening
+
+The build retains the stock tenting case with a transparent acrylic top and an
+aluminium bottom. It also uses a custom-molded silicone sound absorber, painter's
+tape, and PE foam. A platinum-cure silicone is preferable to the oily tin-cure
+compound used in the first version.
+
+![Case bottom](assets/pictures/case_bottom.jpg)
+![Case top](assets/pictures/case_top.jpg)
+
+### Displays
+
+The two displays are 1.3-inch 64x128 SH1107 modules. The original build used
+[these displays](https://www.aliexpress.com/item/1005005777499038.html).
+
+![Original 32x128 display comparison](assets/pictures/old_display.jpg)
+
+### Five-way switch
+
+The right encoder position uses a
+[five-direction switch](https://www.aliexpress.com/item/1005004108793838.html).
+Its five contacts occupy matrix positions `[5,6]` through `[9,6]`.
+
+![Five-way switch](assets/pictures/joystic.jpg)
+
+### Switches and keycaps
+
+The photographed build uses Keychron Smoothie switches and blank white Cherry
+profile PBT keycaps.
+
+## j64 keymap
+
+The base layer uses CSAG-style home-row mods, Space and Enter layer-taps, Caps
+Word, and five-way shortcuts for window positioning. The gaming layer replaces
+home-row mod-taps with ordinary keys and turns the intended RGB indicators red.
+
+![j64 base layer](assets/pictures/l0.png)
+![j64 raise layer](assets/pictures/l1.png)
+![j64 lower layer](assets/pictures/l2.png)
+![j64 gaming layer](assets/pictures/l3.png)
+
+Migration evidence is in [`docs/`](docs), and the physical post-flash procedure
+is in the [manual hardware checklist](docs/hardware-validation.md).
