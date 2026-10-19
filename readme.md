@@ -1,22 +1,32 @@
-# Sofle RGB Custom firmware
+# Sofle MX and Choc firmware
 
-Upstream-QMK firmware for a PandaKB Sofle RGB build with two hardware changes:
+Upstream-QMK firmware for two related PandaKB Sofle hardware revisions:
 
-- the stock 32x128 OLEDs are replaced by 64x128 SH1107 displays;
-- the right rotary encoder is replaced by a five-way switch wired as the right
-  matrix's seventh column on `GP28`.
+- `rustyc0der/sofle/mx` is the customized MX build with 128x64 SH1107
+  displays, a left encoder, a right five-way switch, and 72 RGB Matrix LEDs.
+- `rustyc0der/sofle/choc` is the low-profile Choc build with the same 128x64
+  SH1107 displays, left encoder, right five-way switch, and 58 per-key RGB
+  LEDs. It has no separate backlight circuit and no bootloader indicator LED.
 
-The keyboard uses RP2040 controllers, keeps the left encoder, and drives 72 RGB
-Matrix LEDs split evenly between the halves.
+Both revisions use RP2040 controllers and the same vendor namespace, but a
+build must always name the physical revision.
+
+| Revision | Switches | OLEDs (physical; QMK framebuffer) | Controls | Per-key RGB | Separate backlight | Reset indicator LED | USB PID |
+| --- | --- | --- | --- | ---: | --- | --- | --- |
+| `mx` | MX | 2 x 128x64 SH1107; 64x128 portrait | Left encoder; right five-way switch | 72 LEDs | No | GP17 | `0x0288` |
+| `choc` | Choc | 2 x 128x64 SH1107; 64x128 portrait | Left encoder; right five-way switch | 58 LEDs | No | None | `0x0287` |
+
+Here, “per-key RGB” means the WS2812 RGB Matrix LEDs fitted beneath the keys;
+neither PCB has a separate conventional backlight or RGB-underglow circuit.
 
 ![Completed keyboard](assets/pictures/keeb.jpg)
 
 ## Firmware layout and support
 
-The QMK package mirrors its collision-free build identifier at
-[`keyboards/rustyc0der/sofle`](keyboards/rustyc0der/sofle). Do not install it as
-`sofle/sofle`: that path collides with and inherits settings from QMK's unrelated
-upstream Sofle family.
+The QMK package is organized as the non-buildable family
+[`keyboards/rustyc0der/sofle`](keyboards/rustyc0der/sofle), with buildable `mx`
+and `choc` children. Do not install it as `sofle/sofle`: that path collides with
+and inherits settings from QMK's unrelated upstream Sofle family.
 
 Two keymaps are maintained:
 
@@ -36,20 +46,38 @@ submodules. Build from the QMK checkout after creating the safe vendor-directory
 symlink documented in the [keyboard README](keyboards/rustyc0der/sofle/readme.md):
 
 ```sh
-qmk compile -kb rustyc0der/sofle -km default
-qmk compile -kb rustyc0der/sofle -km j64
+qmk compile -kb rustyc0der/sofle/mx -km default
+qmk compile -kb rustyc0der/sofle/mx -km j64
+qmk compile -kb rustyc0der/sofle/choc -km default
+qmk compile -kb rustyc0der/sofle/choc -km j64
 ```
+
+The former `rustyc0der/sofle` build identifier is intentionally removed. Use
+the `/mx` suffix for the previously supported customized keyboard.
 
 Flash the selected UF2 to both halves. The keyboard README contains the full
 installation and flashing procedure.
 
 ## VIA
 
-Build and flash `j64`, then load [`via/sofle-via.json`](via/sofle-via.json) as a
-draft definition in VIA's Design tab. See the [VIA definition
+Build and flash the matching `j64` target, then load its revision-specific VIA
+draft definition. The MX definition is
+[`via/sofle-mx-via.json`](via/sofle-mx-via.json), and the Choc definition is
+[`via/sofle-choc-via.json`](via/sofle-choc-via.json). See the [VIA definition
 guide](via/README.md) for exact steps. VIA is not enabled by `default`.
 
-## Hardware notes
+## Choc hardware reference
+
+The Choc matrix, encoder, RGB Matrix, and split wiring are based on PandaKB's
+[published Choc Sofle QMK firmware](https://github.com/PandaKBLab/QMK-firmware-for-keyboards).
+This build preserves the published row, ordinary-column, left-encoder, RGB,
+and split wiring. It describes the locally fitted 128x64 SH1107 OLEDs shared
+with MX and replaces the published right encoder with the same five-way switch
+as MX on a right-only `GP28` seventh column. The displays are mounted in
+portrait, so QMK uses a logical 64x128 framebuffer. Choc intentionally defines
+no separate backlight or reset indicator LED.
+
+## Shared customized hardware notes
 
 ### Case and dampening
 
@@ -63,14 +91,15 @@ compound used in the first version.
 
 ### Displays
 
-The two displays are 1.3-inch 64x128 SH1107 modules. The original build used
+The two displays are 1.3-inch 128x64 SH1107 modules mounted in portrait; QMK
+therefore uses a logical 64x128 framebuffer. The original build used
 [these displays](https://www.aliexpress.com/item/1005005777499038.html).
 
 ![Original 32x128 display comparison](assets/pictures/old_display.jpg)
 
 ### Five-way switch
 
-The right encoder position uses a
+The right encoder position on each revision uses a
 [five-direction switch](https://www.aliexpress.com/item/1005004108793838.html).
 Its five contacts occupy matrix positions `[5,6]` through `[9,6]`.
 
@@ -83,9 +112,12 @@ profile PBT keycaps.
 
 ## j64 keymap
 
-The base layer uses CSAG-style home-row mods, Space and Enter layer-taps, Caps
-Word, and five-way shortcuts for window positioning. The gaming layer replaces
-home-row mod-taps with ordinary keys and turns the intended RGB indicators red.
+Both revisions use the same compiled key assignments, layers, macros, encoder
+map, and five-way behavior. The base layer uses CSAG-style home-row mods, Space
+and Enter layer-taps, Caps Word, and five-way shortcuts for window positioning.
+The gaming layer replaces home-row mod-taps with ordinary keys and turns the
+intended RGB indicators red. Both also render the same dog/status artwork on
+the primary OLED and girl graphic on the secondary OLED.
 
 ![j64 base layer](assets/pictures/l0.png)
 ![j64 raise layer](assets/pictures/l1.png)

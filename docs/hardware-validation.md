@@ -1,52 +1,59 @@
 # Manual hardware validation
 
-Use the final verified `j64` UF2 on both halves. Record the date, QMK commit,
-firmware checksum, host OS, and the result of each item before accepting the
-migration. These checks require the physical keyboard and are intentionally not
-marked complete by the compile-only migration.
+Use the final verified revision-specific `j64` UF2 on both halves. Record the
+date, QMK commit, firmware checksum, host OS, and result of every item before
+accepting the migration. These checks require physical keyboards and therefore
+remain incomplete after compile-only validation.
 
-## Firmware and connection
+## Common connection and behavior
 
-- [ ] Flash the same verified `rustyc0der/sofle:j64` UF2 onto both RP2040 halves.
-- [ ] With the interconnect attached and USB connected to the left half, confirm
-  that both halves type and neither controller enters the bootloader.
-- [ ] Repeat with USB connected to the right half to confirm handedness and
-  primary-side selection.
+- [ ] Flash the same matching UF2 onto both RP2040 halves, with the split cable
+  disconnected during flashing.
+- [ ] Connect the split cable, attach USB to the left half, and confirm that both
+  halves type and neither controller enters the bootloader.
+- [ ] Repeat with USB on the right half to confirm handedness and primary-side
+  selection.
+- [ ] Test Space and Enter as taps and held layer keys, home-row mods, tap dance,
+  Caps Word, the delayed `M0` shortcut, and entering/exiting the gaming layer.
+- [ ] Leave the board idle for more than 60 seconds, verify both OLEDs time out,
+  and wake them with a keypress.
+- [ ] Suspend and wake the host. Confirm input, both displays, and RGB Matrix
+  resume without changing the active layer.
+- [ ] Double-tap reset on each half and confirm entry into the RP2040 bootloader.
+- [ ] Load the matching VIA JSON, confirm all five dynamic layers and the
+  expected encoder map, remap a harmless key and encoder direction, power-cycle,
+  and verify persistence before restoring the compiled defaults.
 
-## Inputs
+## MX revision (`rustyc0der/sofle/mx:j64`)
 
-- [ ] Test every ordinary matrix key on the left half.
-- [ ] Test every ordinary matrix key on the right half and confirm the unused
-  left seventh column produces no phantom presses.
-- [ ] Test the right five-way switch separately: up, down, left, right, and
-  center. On the base layer, confirm the assigned window-management shortcuts.
-- [ ] Rotate the left encoder both directions on every maintained layer; confirm
-  base-layer volume and raise-layer brightness behavior.
-- [ ] Test Space and Enter as both taps and held layer keys, including chords
-  that exercise per-key hold-on-other-key-press behavior.
-- [ ] Test home-row mods, tap dance, Caps Word, the delayed `M0` shortcut, and
-  entering/exiting the gaming layer.
+- [ ] Flash both halves with the MX UF2 and confirm USB PID `0x0288`.
+- [ ] Test all ordinary keys and the five right-side seventh-column matrix
+  positions without phantom presses.
+- [ ] Test the right five-way switch: up, down, left, right, and center.
+- [ ] Rotate and press the left encoder; confirm base-layer volume and
+  raise-layer brightness directions.
+- [ ] Confirm both physical 128x64 SH1107 OLEDs initialize in portrait with the
+  logical 64x128 framebuffer and render the full primary/secondary j64 content
+  and pet animation.
+- [ ] Exercise all 72 per-key RGB Matrix LEDs (36 per half), then verify the
+  gaming-layer red indication and its restoration after suspend/wake.
+- [ ] Confirm the GP17 reset indicator operates during double-tap reset.
 
-## Displays and lighting
+## Choc revision (`rustyc0der/sofle/choc:j64`)
 
-- [ ] Confirm both 64x128 SH1107 OLEDs initialize in the correct orientation
-  and render the expected primary/secondary content.
-- [ ] Confirm the OLED pet reacts to typing and modifier state.
-- [ ] Leave the keyboard inactive for more than 60 seconds and confirm both
-  OLEDs enter their timeout state, then wake them with a keypress.
-- [ ] Exercise all 72 RGB LEDs and inspect both 36-LED halves for the expected
-  coordinates, effects, and brightness.
-- [ ] Enter the gaming layer and confirm its intended LEDs turn red; leave the
-  layer and confirm normal RGB Matrix behavior resumes.
-- [ ] While the gaming layer is active, suspend and wake the host. Confirm the
-  keyboard resumes input, both displays resume, and the RGB Matrix indicator
-  hook restores the red gaming-layer color without changing layers.
-
-## VIA persistence
-
-- [ ] Load the maintained VIA definition, connect to the `j64` firmware, and
-  confirm all five dynamic layers and the encoder map are visible.
-- [ ] Remap a harmless key and encoder direction, save or allow VIA to persist
-  it, power-cycle the keyboard, and confirm both mappings remain.
-- [ ] Restore the intended compiled mapping or clear dynamic keymap storage and
-  confirm the compiled defaults are usable.
+- [ ] Flash both halves with the Choc UF2 and confirm USB PID `0x0287`.
+- [ ] Test every ordinary key and all five positions on the right-only seventh
+  column; confirm the 10x7 VIA matrix produces no phantom presses.
+- [ ] Test the right five-way switch: up, down, left, right, and center, and
+  confirm its assignments match MX on every maintained layer.
+- [ ] Rotate and press the left encoder, checking both directions on every
+  maintained layer against the shared MX encoder map.
+- [ ] Confirm both physical 128x64 SH1107 OLEDs initialize in portrait with the
+  logical 64x128 framebuffer, with the same dog/status artwork on the primary
+  half and girl graphic on the secondary half as MX.
+- [ ] Exercise all 58 fitted per-key RGB Matrix LEDs (29 per half), then verify
+  the gaming-layer red indication and its restoration after suspend/wake.
+- [ ] Confirm there is no conventional backlight/underglow control in VIA and no
+  separate backlight circuit illuminates; the 58 per-key LEDs are RGB Matrix.
+- [ ] During double-tap reset, confirm bootloader entry succeeds without relying
+  on or attempting to drive an indicator LED, because none is physically fitted.

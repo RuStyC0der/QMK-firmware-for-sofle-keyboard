@@ -18,7 +18,7 @@
 
 // clang-format off
 
-#include "j64.h"
+#include "../../../j64/j64.h"
 
 // Compiled defaults can be changed in VIA. OLED rendering remains firmware-defined.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {

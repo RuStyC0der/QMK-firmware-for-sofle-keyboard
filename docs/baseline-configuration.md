@@ -55,7 +55,7 @@ drive the hardware; it is not an independent migration requirement.
 | Setting | Baseline value |
 | --- | --- |
 | OLED controller | SH1107 |
-| OLED geometry | 64x128 |
+| OLED geometry | Physical 128x64; logical 64x128 portrait framebuffer |
 | I2C driver | `I2CD1` |
 | I2C SDA/SCL | `GP2` / `GP3` |
 | Brightness | 180 |
@@ -63,7 +63,8 @@ drive the hardware; it is not an independent migration requirement.
 | Font | `lib/glcdfont.c` |
 
 The board-level legacy config declared `OLED_DISPLAY_128X32`, but the `j64`
-keymap explicitly undefined it and selected the actual 64x128 SH1107 panel.
+keymap explicitly undefined it and selected the physical 128x64 SH1107 panel's
+logical 64x128 portrait framebuffer.
 The modernized board records only the actual hardware.
 
 ## Resolved j64 build features

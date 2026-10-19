@@ -28,7 +28,8 @@ The resolved baseline used an RP2040 with the `rp2040` bootloader; USB VID/PID
 `GP13, GP12, GP7, GP8, GP9`; serial transport on `GP1`; handedness on
 `GP4`; encoder pins `GP29`/`GP28`; WS2812 data on `GP0`; and 72 RGB Matrix
 LEDs split 36/36. The OLED configuration used `I2CD1` on `GP2`/`GP3`, SH1107,
-64x128 geometry, brightness 180, and a 60-second timeout. The complete
+logical 64x128 portrait geometry for the physical 128x64 panel, brightness
+180, and a 60-second timeout. The complete
 machine-comparable record is in [baseline-configuration.md](baseline-configuration.md).
 
 ## User-owned working-tree changes preserved as migration inputs

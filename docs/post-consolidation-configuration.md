@@ -24,7 +24,7 @@ commit `180f394b489c238cb231c2bf8b080262155e03c0`.
 | Encoder | `GP29`/`GP28`, resolution 4 | same | Match |
 | WS2812 | vendor, `GP0` | same | Match |
 | RGB Matrix | WS2812, 72 LEDs, 36/36, brightness 128 | same | Match |
-| OLED / I2C | SH1107 64x128, `I2CD1`, `GP2`/`GP3` | same | Match |
+| OLED / I2C | Physical SH1107 128x64, logical 64x128 portrait framebuffer, `I2CD1`, `GP2`/`GP3` | same | Match |
 
 The complete 72-entry RGB coordinate/flag array is unchanged.
 
