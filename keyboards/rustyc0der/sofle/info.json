@@ -8,7 +8,7 @@
         "encoder": true,
         "extrakey": true,
         "mousekey": true,
-        "nkro": true,
+        "nkro": false,
         "oled": true,
         "rgb_matrix": true
     },

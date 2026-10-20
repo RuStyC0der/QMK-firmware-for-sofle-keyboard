@@ -4,6 +4,12 @@
 #include "j64.h"
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef SECURE_ENABLE
+    // Keep an unlocked VIA matrix tester session alive while keys are being used.
+    if (record->event.pressed) {
+        secure_activity_event();
+    }
+#endif
     switch (keycode) {
         case KC_LCTL:
         case KC_RCTL:
