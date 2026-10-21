@@ -71,7 +71,8 @@ The modernized board records only the actual hardware.
 
 Enabled in the successful baseline build:
 
-- Bootmagic Lite, mouse keys, extra keys, NKRO, console, Caps Word
+- Bootmagic Lite, mouse keys, extra keys, console, Caps Word (NKRO was enabled
+  in this baseline build and has since been disabled for all boards)
 - split keyboard, encoder, encoder map
 - OLED and WPM
 - RGB Matrix

@@ -31,7 +31,7 @@ The complete 72-entry RGB coordinate/flag array is unchanged.
 ## Behavior comparison
 
 The consolidated `j64` target still resolves Bootmagic Lite, mouse keys, extra
-keys, NKRO, console, Caps Word, split support, encoder and encoder map, OLED,
+keys, console, Caps Word, split support, encoder and encoder map, OLED,
 WPM, RGB Matrix, VIA, tap dance, five dynamic layers, 16 macros, tapping term
 200 ms, and tap-code delay 10 ms.
 

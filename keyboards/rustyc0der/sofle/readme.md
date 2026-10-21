@@ -32,9 +32,32 @@ switch as MX on a right-only `GP28` matrix column.
   same assignments on both revisions.
 - `j64`: the maintained personal keymap with VIA, the shared encoder map and
   five-way behavior, identical dog/girl OLED rendering,
-  tap dance, home-row mods, Caps Word, and gaming-layer lighting.
+  tap dance, home-row mods, Caps Word, gaming-layer lighting, and a locked-by-default
+  VIA matrix tester (see [Matrix tester unlock](#matrix-tester-unlock)).
+
+NKRO is disabled for every revision and keymap; the keyboard reports with the
+standard 6-key rollover (6KRO) HID report.
 
 The family root is intentionally not buildable; always select a revision.
+
+### Matrix tester unlock
+
+The `j64` keymap builds with QMK Secure. VIA's matrix tester only receives key
+state while the keyboard is unlocked, so turning on **Test matrix** in VIA shows
+nothing until you unlock:
+
+1. Hold the Lower layer-tap (the outer right thumb `Enter`, `LT(2, KC_ENT)`) and
+   press the key at the left `T` position (`SE_REQ`, *Request Unlock*), then
+   release it. Normal key input is ignored while the unlock is pending.
+2. Within 5 seconds, press these keys in order on the physical matrix: top-left
+   outer (`Esc`), top-left inner (`5`), top-right inner (`6`), top-right outer.
+3. Run the matrix tester. The keyboard locks again after 60 seconds without a
+   key press, or immediately with `SE_LOCK`. A wrong key in step 2 locks it.
+
+`SE_REQ` is part of the compiled keymap, but VIA stores the active keymap in
+EEPROM. After flashing, either reset EEPROM or assign **Any** `0x7C63` in VIA to
+a key. Matrix positions are physical, so remapped layers do not change the
+unlock sequence.
 
 The verified upstream baseline is QMK `0.34.7`, commit
 `180f394b489c238cb231c2bf8b080262155e03c0`, including that checkout's pinned

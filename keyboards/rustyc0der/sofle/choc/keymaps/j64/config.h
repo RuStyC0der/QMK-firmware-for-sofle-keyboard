@@ -30,3 +30,8 @@
 #define TAPPING_TERM 200
 
 #define TAPPING_TERM_PER_KEY
+
+/* VIA's matrix tester only reports key state while the keyboard is unlocked.
+ * Unlock with SE_REQ, then press these matrix positions in order: top-left outer,
+ * top-left inner, top-right inner, top-right outer. */
+#define SECURE_UNLOCK_SEQUENCE { {0, 0}, {0, 5}, {5, 5}, {5, 0} }
