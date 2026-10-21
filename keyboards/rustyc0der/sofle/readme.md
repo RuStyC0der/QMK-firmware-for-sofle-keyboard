@@ -89,6 +89,16 @@ qmk compile -kb rustyc0der/sofle/choc -km default
 qmk compile -kb rustyc0der/sofle/choc -km j64
 ```
 
+## Choc five-way wiring
+
+The five-way switch on the author's Choc build is wired with its direction
+contacts on the wrong rows, so the `choc` `LAYOUT` maps `joy-r`, `joy-d`,
+`joy-l`, and `joy-u` to matrix cells `[6,6]`, `[5,6]`, `[9,6]`, and `[7,6]`
+(`joy-m` stays at `[8,6]`). The keymaps are unchanged and `mx` keeps the
+original cells. A correctly wired Choc board should revert this swap and the
+matching legends in `via/sofle-choc-via.json`. After flashing, reset the EEPROM
+or reassign the four direction cells in VIA.
+
 ## Flashing
 
 Each RP2040 half must receive the same selected firmware. From the QMK checkout,
