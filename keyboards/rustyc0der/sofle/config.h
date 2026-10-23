@@ -21,6 +21,6 @@
 #    define OLED_DISPLAY_64X128
 #    define OLED_IC OLED_IC_SH1107
 #    define OLED_FONT_H "lib/glcdfont.c"
-#    define OLED_BRIGHTNESS 180
+#    define OLED_BRIGHTNESS 100
 #    define OLED_TIMEOUT 60000
 #endif
