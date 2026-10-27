@@ -38,3 +38,7 @@
 
 /* Pressing left and right shift together turns on Caps Word. */
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+
+/* Hold each tapped key for 10 ms so hosts (notably macOS) reliably see
+ * shortcuts such as the M0 language switch as a single press. */
+#define TAP_CODE_DELAY 10

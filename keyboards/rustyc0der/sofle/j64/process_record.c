@@ -29,7 +29,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case M0:
             if (record->event.pressed) {
-                SEND_STRING(SS_DOWN(X_LGUI) SS_DELAY(50) SS_TAP(X_SPACE) SS_UP(X_LGUI));
+                SEND_STRING(SS_DOWN(X_LGUI) SS_DELAY(50) SS_TAP(X_SPACE) SS_DELAY(30) SS_UP(X_LGUI));
             } else {
                 // when keycode QMKBEST is released
             }
