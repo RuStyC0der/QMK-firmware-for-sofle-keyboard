@@ -35,3 +35,6 @@
  * Unlock with SE_REQ, then press these matrix positions in order: top-left outer,
  * top-left inner, top-right inner, top-right outer. */
 #define SECURE_UNLOCK_SEQUENCE { {0, 0}, {0, 5}, {5, 5}, {5, 0} }
+
+/* Pressing left and right shift together turns on Caps Word. */
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
