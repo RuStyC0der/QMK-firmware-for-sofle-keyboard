@@ -89,6 +89,31 @@ qmk compile -kb rustyc0der/sofle/choc -km default
 qmk compile -kb rustyc0der/sofle/choc -km j64
 ```
 
+## Building with Docker (preferred on macOS)
+
+On macOS prefer building in Docker when Docker is installed: the Homebrew
+`arm-none-eabi-gcc` can be broken (for example a missing `isl` dylib makes
+`cc1` abort), while a container carries its own working toolchain. The image
+only needs the QMK CLI and `arm-none-eabi-gcc`; the one used for the verified
+builds is a local `qmk-sofle:latest` (QMK CLI 1.2.0, GCC 12.2.1, arm64).
+
+The `keyboards/rustyc0der` symlink in the QMK checkout points at an absolute
+host path, so mount this repository into the container at that same path as
+well as mounting the QMK checkout:
+
+```sh
+repo_root=/absolute/path/to/QMK-firmware-for-sofle-keyboard
+qmk_root=/absolute/path/to/qmk_firmware
+docker run --rm --entrypoint sh \
+  -v "$qmk_root":/qmk_firmware -v "$repo_root":"$repo_root" -w /qmk_firmware \
+  qmk-sofle:latest -c 'qmk compile -kb rustyc0der/sofle/choc -km j64'
+```
+
+The UF2 is written to the QMK checkout root (`$qmk_root/rustyc0der_sofle_choc_j64.uf2`).
+Change `-kb`/`-km` for the other targets. If a host build with a different
+compiler was attempted first, delete that target's
+`$qmk_root/.build/obj_rustyc0der_sofle_*` directory before building.
+
 ## Choc five-way wiring
 
 The five-way switch on the author's Choc build is wired with its direction
